@@ -11,7 +11,7 @@ def bubble_sort(numbers)
 
   until pass > max_passes do
     sorted[0..-pass].each_index do |index| #only deal with items not yet sorted
-      
+
       unless index == sorted[0..-pass].length - 1 #stop on last item as nothing left to compare
         #switch items if left > right
         if sorted[index] > sorted[index + 1]
