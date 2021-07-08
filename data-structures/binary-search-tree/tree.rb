@@ -1,5 +1,8 @@
+require_relative 'node'
+
 class Tree
   def initialize(array)
+    array = array.sort.uniq
     @root = build_tree(array, 0, array.size - 1) unless array.nil? || array.size.zero?
     @counter = 0
   end
