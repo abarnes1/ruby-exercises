@@ -106,7 +106,7 @@ class Tree
   end
 
   def rebalance
-    values = level_order
+    values = level_order.sort.uniq
     @root = build_tree(values, 0, values.size - 1)
   end
 
