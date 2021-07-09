@@ -1,24 +1,23 @@
+# frozen_string_literal: true
+AllowedMethods: ['some_method']
+
 require_relative 'node'
 
 class Tree
   def initialize(array)
     array = array.sort.uniq
     @root = build_tree(array, 0, array.size - 1) unless array.nil? || array.size.zero?
-    @counter = 0
   end
 
   def insert(value)
     tree_insert(@root, value)
-    @counter = -1
   end
 
   def delete(value)
-    @counter = -1
-    puts "deleting: #{value}"
     tree_delete(@root, value)
   end
 
-  def pretty_print(node = @root, prefix = '', is_left = true)
+  def pretty_print(node = @root, prefix = '', is_left: = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
@@ -114,10 +113,6 @@ class Tree
 
   private
 
-  def indent
-    ' ' * @counter
-  end
-
   def tree_insert(node, value)
     return Node.new(value) if node.nil?
 
@@ -133,26 +128,19 @@ class Tree
   def tree_delete(node, value)
     return node if node.nil? # if never found then we're at leaf level so return
 
-    @counter += 1
-    puts "#{indent}tree_delete with node: #{node.data}"
     if value < node.data
-      puts " #{indent}-traversing left"
       node.left = tree_delete(node.left, value)
     elsif value > node.data
-      puts " #{indent}-traversing right"
       node.right = tree_delete(node.right, value)
     else # is a match
-      puts " #{indent}-it's a match"
       return node.right if node.left.nil?
       return node.left if node.right.nil?
 
-      puts " #{indent}-it also has 2 children"
       # has left and right
       # find next largest to replace deleted
-      # go right once then all lefts
 
+      # go right once then all lefts
       replacement = next_highest_node(node, true)
-      puts " #{indent}-it also has 2 children"
       node.data = replacement.data
       tree_delete(node.right, node.data)
     end
@@ -161,20 +149,12 @@ class Tree
   end
 
   def next_highest_node(node, go_right = false)
-    @counter += 1
-    puts "#{indent}next_highest_node called on: (#{node})"
-
     # terminal condition: going left and can go no further
-    if !go_right && node.left.nil?
-      puts "#{indent}-found next highest: #{node}"
-      return node
-    end
+    return node if !go_right && node.left.nil?
 
     if go_right
-      puts "#{indent}-going right from #{node.data}"
       next_highest_node(node.right)
     else
-      puts "#{indent}-going left from #{node.data}"
       next_highest_node(node.left)
     end
   end
