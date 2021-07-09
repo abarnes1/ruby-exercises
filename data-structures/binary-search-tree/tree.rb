@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-AllowedMethods: ['some_method']
 
 require_relative 'node'
 
