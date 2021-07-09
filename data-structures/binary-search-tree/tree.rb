@@ -16,7 +16,7 @@ class Tree
     tree_delete(@root, value)
   end
 
-  def pretty_print(node = @root, prefix = '', is_left: = true)
+  def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
@@ -74,12 +74,12 @@ class Tree
   end
 
   def height(node = @root)
-    return -1 if node.nil?
+    return 0 if node.nil?
 
-    left = 1 + height(node.left)
-    right = 1 + height(node.right)
+    left = node.left.nil? ? -1 : height(node.left)
+    right = node.right.nil? ? -1 : height(node.right)
 
-    left > right ? left : right
+    left > right ? left + 1 : right + 1
   end
 
   def depth(end_node, current_node = @root)

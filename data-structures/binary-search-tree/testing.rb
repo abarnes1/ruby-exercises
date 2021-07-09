@@ -74,7 +74,6 @@ test_tree.rebalance
 test_tree.pretty_print
 puts "balanced: #{test_tree.balanced?}"
 
-
 # test_tree.delete(25)
 # test_tree.pretty_print
 
