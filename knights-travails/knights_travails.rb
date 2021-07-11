@@ -2,10 +2,10 @@ require_relative 'knight'
 require_relative 'travail_node'
 
 class KnightsTravails
-  def initialize(starting_position = [3, 3])
+  def initialize(starting_position = [3, 3], ending_position)
     @root = TravailNode.new(starting_position)
     @knight = Knight.new(starting_position)
-    @final_position = [0, 0]
+    @final_position = ending_position
     @visited_positions = []
   end
 
@@ -16,10 +16,11 @@ class KnightsTravails
     node = queue.shift
 
     parent_position = node.parent_node.nil? ? '' : node.parent_node.position
-    puts "processing node: #{node.position} from parent #{parent_position}"
+    # puts "processing node: #{node.position} from parent #{parent_position}"
     
     if node.position == @final_position
-      puts "PATH FOUND?!?! #{@root.position} to #{node.position}"
+      # puts "PATH FOUND?!?! #{@root.position} to #{node.position}"
+      puts 'we have travailed?!?!'
       return node
     end
 

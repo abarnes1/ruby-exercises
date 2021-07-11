@@ -7,11 +7,11 @@ class Knight
     position_changes = generate_coord_changes if @possible_moves.nil?
 
     new_coords = position_changes.map do |change|
-      puts "change: #{change}"
+      # puts "change: #{change}"
       new_x = @position[0] + change[0]
       new_y = @position[1] + change[1]
 
-      puts " new coords: #{new_x}, #{new_y}"
+      # puts " new coords: #{new_x}, #{new_y}"
       [new_x, new_y]
     end
 
@@ -25,13 +25,15 @@ class Knight
   private
 
   def generate_coord_changes
-    puts 'generating coordinate changes'
     direction_one = [-2, 2]
     direction_two = [-1, 1]
-    
-    @position_changes = direction_one.product(direction_two) + direction_two.product(direction_one) if @position_changes.nil?
 
-    p "  coord changes: #{@possible_moves}"
+    if @position_changes.nil?
+      # puts 'generating coordinate changes'
+      @position_changes = direction_one.product(direction_two) + direction_two.product(direction_one)
+    end
+
+    # p "  coord changes: #{@possible_moves}"
     @position_changes
   end
 end
