@@ -1,5 +1,6 @@
 require_relative 'knight'
 require_relative 'knights_travails'
+require_relative 'chessboard'
 # start_square = [0, 0]
 # dir1 = [-2, 2]
 # dir2 = [-1, 1]
@@ -38,3 +39,15 @@ test_travail = KnightsTravails.new(start, final)
 
 last_node = test_travail.travail
 puts "positions: #{last_node.moves.inspect}"
+
+cell1 = ' '.bg_cyan
+cell2 = ' '.bg_gray
+puts "#{cell1}#{cell2}#{cell1}"
+puts '123'.bg_cyan
+puts 'abc'.blink
+
+puts "\u2659 ".bg_cyan.black
+puts "\u265F ".bg_cyan.black
+
+puts "\u2659 ".bg_gray.black
+puts "\u265F ".bg_gray.black
