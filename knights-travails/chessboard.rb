@@ -10,10 +10,10 @@ class Chessboard
     # @y = y_size
   end
 
-  def square(x, y, data)
+  def square(x, y)
     index = x + (y * 8)
-    puts "#{x}, #{y} is index #{index}, obj id #{@squares[index].object_id}"
-    @squares[index][:piece] = data
+    # puts "\n#{x}, #{y} is index #{index}, obj id #{@squares[index].object_id}\n"
+    @squares[index]
   end
 
   def console_print
@@ -39,10 +39,12 @@ class Chessboard
   def init_squares
     @squares.each_index do |index|
       if (index + (index / 8)).even?
-        @squares[index].bg_color = Colors::BG_BROWN
+        @squares[index].bg_color = Colors::BG_GRAY
       else
         @squares[index].bg_color = Colors::BG_BLUE
       end
     end
   end
 end
+
+

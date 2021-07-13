@@ -17,10 +17,10 @@ class KnightsTravails
 
     parent_position = node.parent_node.nil? ? '' : node.parent_node.position
     # puts "processing node: #{node.position} from parent #{parent_position}"
-    
+
     if node.position == @final_position
       # puts "PATH FOUND?!?! #{@root.position} to #{node.position}"
-      puts 'we have travailed?!?!'
+      # puts 'we have travailed?!?!'
       return node
     end
 
@@ -31,7 +31,7 @@ class KnightsTravails
     new_node_positions.each do |position|
       queue.push(TravailNode.new(position, node)) unless @visited_positions.include?(position)
     end
-  
+
     travail(queue)
   end
 end

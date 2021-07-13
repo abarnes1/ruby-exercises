@@ -1,6 +1,7 @@
 require_relative 'knight'
 require_relative 'knights_travails'
 require_relative 'chessboard'
+require_relative 'chess_square'
 # start_square = [0, 0]
 # dir1 = [-2, 2]
 # dir2 = [-1, 1]
@@ -40,14 +41,19 @@ test_travail = KnightsTravails.new(start, final)
 last_node = test_travail.travail
 puts "positions: #{last_node.moves.inspect}"
 
-cell1 = ' '.bg_cyan
-cell2 = ' '.bg_gray
-puts "#{cell1}#{cell2}#{cell1}"
-puts '123'.bg_cyan
-puts 'abc'.blink
+board = Chessboard.new
+# board.console_print
+puts "\n\n"
+square = board.square(0, 0)
+square.piece = '0'
+square.color = Colors::RED
 
-puts "\u2659 ".bg_cyan.black
-puts "\u265F ".bg_cyan.black
+square = board.square(2, 1)
+square.piece = '1'
+square.color = Colors::RED
 
-puts "\u2659 ".bg_gray.black
-puts "\u265F ".bg_gray.black
+square = board.square(3, 3)
+square.piece = Pieces::KNIGHT_SOLID
+square.color = Colors::RED
+
+board.console_print
