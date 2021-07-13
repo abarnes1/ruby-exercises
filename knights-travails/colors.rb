@@ -1,25 +1,23 @@
-class String
-  def black;          "\e[30m#{self}\e[0m" end
-  def red;            "\e[31m#{self}\e[0m" end
-  def green;          "\e[32m#{self}\e[0m" end
-  def brown;          "\e[33m#{self}\e[0m" end
-  def blue;           "\e[34m#{self}\e[0m" end
-  def magenta;        "\e[35m#{self}\e[0m" end
-  def cyan;           "\e[36m#{self}\e[0m" end
-  def gray;           "\e[37m#{self}\e[0m" end
-  
-  def bg_black;       "\e[40m#{self}\e[0m" end
-  def bg_red;         "\e[41m#{self}\e[0m" end
-  def bg_green;       "\e[42m#{self}\e[0m" end
-  def bg_brown;       "\e[43m#{self}\e[0m" end
-  def bg_blue;        "\e[44m#{self}\e[0m" end
-  def bg_magenta;     "\e[45m#{self}\e[0m" end
-  def bg_cyan;        "\e[46m#{self}\e[0m" end
-  def bg_gray;        "\e[47m#{self}\e[0m" end
-  
-  def bold;           "\e[1m#{self}\e[22m" end
-  def italic;         "\e[3m#{self}\e[23m" end
-  def underline;      "\e[4m#{self}\e[24m" end
-  def blink;          "\e[5m#{self}\e[25m" end
-  def reverse_color;  "\e[7m#{self}\e[27m" end
+class Colors
+  self::BLACK = '30'.freeze
+  self::RED = '31'.freeze
+  self::GREEN = '32'.freeze
+  self::BROWN = '33'.freeze
+  self::BLUE = '34'.freeze
+  self::MAGENTA = '35'.freeze
+  self::CYAN = '36'.freeze
+  self::GRAY = '37'.freeze
+
+  self::BG_BLACK = '40'.freeze
+  self::BG_RED = '41'.freeze
+  self::BG_GREEN = '42'.freeze
+  self::BG_BROWN = '43'.freeze
+  self::BG_BLUE = '44'.freeze
+  self::BG_MAGENTA = '45'.freeze
+  self::BG_CYAN = '46'.freeze
+  self::BG_GRAY = '47'.freeze
+
+  # https://chrisyeh96.github.io/2020/03/28/terminal-colors.html
+  # 90-97	bright foreground color (non-standard)
+  # 100-107	bright background color (non-standard)
 end
