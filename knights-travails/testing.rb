@@ -30,7 +30,7 @@ pos = [5, 5]
 
 puts 'knights travails'
 start = [0, 0]
-final = [3, 3]
+final = [2, 3]
 
 knight = Knight.new(start)
 # p knight.possible_moves
@@ -39,21 +39,48 @@ puts "finding route from #{start} to #{final}"
 test_travail = KnightsTravails.new(start, final)
 
 last_node = test_travail.travail
-puts "positions: #{last_node.moves.inspect}"
+coord_positions = last_node.moves
 
 board = Chessboard.new
+
+puts "coordinate positions: #{coord_positions}"
+algebraic_positions = coord_positions.map { |e| board.coord_to_algebraic(e) }
+puts "algebraic positions: #{algebraic_positions}"
+
+coord_positions.each_with_index do |position, index|
+  square = board.square(position)
+
+  square.color = Colors::RED
+  square.piece = if index == (coord_positions.size - 1)
+                   Pieces::KNIGHT_SOLID
+                 else
+                   index
+                 end
+end
 # board.console_print
-puts "\n\n"
-square = board.square(0, 0)
-square.piece = '0'
-square.color = Colors::RED
+# puts "\n\n"
+# square = board.square([0, 0])
+# square = board.square('a8')
+# square.piece = '0'
+# square.color = Colors::RED
 
-square = board.square(2, 1)
-square.piece = '1'
-square.color = Colors::RED
+# square = board.square([2, 1])
+# square = board.square('c7')
+# square.piece = '1'
+# square.color = Colors::RED
 
-square = board.square(3, 3)
-square.piece = Pieces::KNIGHT_SOLID
-square.color = Colors::RED
 
+# square = board.square([4, 2])
+# square = board.square('e6')
+# square.piece = '2'
+# square.color = Colors::RED
+
+# square = board.square([5, 4])
+# square = board.square('f4')
+# square.piece = Pieces::KNIGHT_SOLID
+# square.color = Colors::RED
+
+
+
+puts ''
 board.console_print

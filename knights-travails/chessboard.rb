@@ -8,11 +8,23 @@ class Chessboard
     init_squares
   end
 
+  def inbounds?(location)
+    if location.instance_of?(Array)
+      return false unless (0..7).include?(location[0]) && (0..7).include?(location[1])
+    elsif location.instance_of?(String)
+      return false unless ('a'..'h').include?(location[0].downcase) && (1..8).include?(location[1].to_i)
+    else
+      return nil # can't identify the location
+    end
+
+    true
+  end
+
   def square(location)
     square = nil
 
     if location.instance_of?(Array)
-      puts 'loc is array'
+      # puts 'loc is array'
       square = @squares[coord_to_index(location)]
     elsif location.instance_of?(String)
       square = @squares[algebraic_to_index(location)]
@@ -44,14 +56,14 @@ class Chessboard
   def index_to_algebraic(index)
     row = 8 - (index / 8)
     col = (index % 8) + 97
-    puts "index: #{index} - #{col.chr}#{row}"
+    # puts "index: #{index} - #{col.chr}#{row}"
     "#{col.chr}#{row}"
   end
 
   def index_to_coord(index)
     row = index % 8
     col = index / 8
-    puts "index: #{[row, col]}"
+    # puts "index: #{[row, col]}"
     [row, col]
   end
 
@@ -59,14 +71,18 @@ class Chessboard
     x_coord = location[0].ord - 97
     y_coord = (location[1].to_i - 8).abs
     index = coord_to_index([x_coord, y_coord])
-    puts "coord: #{location} is index #{index}"
+    # puts "coord: #{location} is index #{index}"
 
     index
   end
 
+  def coord_to_algebraic(coord)
+    index_to_algebraic(coord_to_index(coord))
+  end
+
   def coord_to_index(coord)
     index = coord[0] + (coord[1] * 8)
-    puts "#{coord[0]}, #{coord[1]} is index #{index}, obj id #{@squares[index].object_id}"
+    # puts "#{coord[0]}, #{coord[1]} is index #{index}, obj id #{@squares[index].object_id}"
     index
   end
 
