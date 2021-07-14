@@ -1,6 +1,9 @@
 require_relative 'chess_square'
+require_relative 'position_translator'
 
 class Chessboard
+  include PositionTranslator
+
   attr_accessor :squares
 
   def initialize
@@ -51,39 +54,6 @@ class Chessboard
     board += "  a b c d e f g h\n"
 
     puts board
-  end
-
-  def index_to_algebraic(index)
-    row = 8 - (index / 8)
-    col = (index % 8) + 97
-    # puts "index: #{index} - #{col.chr}#{row}"
-    "#{col.chr}#{row}"
-  end
-
-  def index_to_coord(index)
-    row = index % 8
-    col = index / 8
-    # puts "index: #{[row, col]}"
-    [row, col]
-  end
-
-  def algebraic_to_index(location)
-    x_coord = location[0].ord - 97
-    y_coord = (location[1].to_i - 8).abs
-    index = coord_to_index([x_coord, y_coord])
-    # puts "coord: #{location} is index #{index}"
-
-    index
-  end
-
-  def coord_to_algebraic(coord)
-    index_to_algebraic(coord_to_index(coord))
-  end
-
-  def coord_to_index(coord)
-    index = coord[0] + (coord[1] * 8)
-    # puts "#{coord[0]}, #{coord[1]} is index #{index}, obj id #{@squares[index].object_id}"
-    index
   end
 
   def init_squares

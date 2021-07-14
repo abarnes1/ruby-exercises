@@ -1,4 +1,8 @@
+require_relative 'position_translator'
+
 class TravailNode
+  include PositionTranslator
+
   attr_reader :position, :parent_node
 
   def initialize(position, parent_node = nil)
@@ -8,12 +12,12 @@ class TravailNode
 
   def moves
     moves = []
-    moves << position
+    moves << coord_to_algebraic(position)
 
     parent = parent_node
 
     until parent.nil?
-      moves << parent.position
+      moves << coord_to_algebraic(parent.position)
       parent = parent.parent_node
     end
 

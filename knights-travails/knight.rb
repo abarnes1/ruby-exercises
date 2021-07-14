@@ -29,11 +29,9 @@ class Knight
     direction_two = [-1, 1]
 
     if @position_changes.nil?
-      # puts 'generating coordinate changes'
       @position_changes = direction_one.product(direction_two) + direction_two.product(direction_one)
     end
 
-    # p "  coord changes: #{@possible_moves}"
     @position_changes
   end
 end

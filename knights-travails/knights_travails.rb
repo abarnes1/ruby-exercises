@@ -1,12 +1,22 @@
 require_relative 'knight'
 require_relative 'travail_node'
+require_relative 'position_translator'
 
 class KnightsTravails
-  def initialize(starting_position, ending_position)
-    @root = TravailNode.new(starting_position)
+  include PositionTranslator
+
+  def initialize; end
+
+  def knights_moves(starting_position, ending_position)
+    @root = TravailNode.new(algebraic_to_coord(starting_position))
     @knight = Knight.new(starting_position)
-    @final_position = ending_position
+    @final_position = algebraic_to_coord(ending_position)
     @visited_positions = []
+
+    last_node = travail()
+    return nil if last_node.nil?
+
+    last_node.moves
   end
 
   def travail(queue = [@root])
@@ -15,9 +25,6 @@ class KnightsTravails
 
     # base case is we are visiting the final position
     node = queue.shift
-
-    # parent_position = node.parent_node.nil? ? '' : node.parent_node.position
-    # puts "processing node: #{node.position} from parent #{parent_position}"
 
     if node.position == @final_position
       # puts "PATH FOUND?!?! #{@root.position} to #{node.position}"
