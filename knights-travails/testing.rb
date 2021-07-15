@@ -1,6 +1,6 @@
-require_relative 'knights_travails'
-require_relative 'chessboard'
-require_relative 'chess_square'
+require_relative 'lib/knights_travails'
+require_relative 'lib/chess/chessboard'
+require_relative 'lib/chess/chess_square'
 
 puts 'knights travails'
 start = 'b1'
@@ -28,3 +28,6 @@ end
 
 puts ''
 board.console_print
+
+knight = Knight.new('a0')
+
