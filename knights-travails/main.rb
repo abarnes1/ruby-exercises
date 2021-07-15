@@ -1,6 +1,6 @@
-require_relative 'knights_travails'
-require_relative 'player_input'
-require_relative 'chess/chessboard'
+require_relative 'lib/knights_travails'
+require_relative 'lib/player_input'
+require_relative 'lib/chess/chessboard'
 
 play_again = 'y'
 
@@ -15,10 +15,10 @@ while play_again == 'y'
   ending_position = PlayerInput.ending_square
 
   travails = KnightsTravails.new
-  puts "\ntraversing from #{starting_position} to #{ending_position}"
+  puts "\nTraversing from #{starting_position} to #{ending_position}"
   positions = travails.knights_moves(starting_position, ending_position)
 
-  puts "positions: #{positions.join(', ')}"
+  puts "Positions: #{positions.join(', ')}"
 
   positions.each_with_index do |position, index|
     square = board.square(position)
