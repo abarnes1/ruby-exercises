@@ -1,6 +1,2 @@
-- generate all possible moves for knight given current position
-- print board current size
-
-
-- move is an x and y coord with a reference to the parent move
-- keep track of squares already visted, as visiting a square that is already visited in a previous iteration could never be the shortest route
+1. replace coordinates and use algebraic notation all of the time
+2. get player inputs
