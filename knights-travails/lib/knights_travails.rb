@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'chess/pieces/knight'
 require_relative 'chess/position_helpers'
 require_relative 'travail_node'

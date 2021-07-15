@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'chess_square'
 require_relative 'position_helpers'
 
