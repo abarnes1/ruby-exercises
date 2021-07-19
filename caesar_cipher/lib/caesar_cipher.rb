@@ -10,7 +10,7 @@ class CaesarCipher
     ]
   end
 
-  def caesar_cipher(message, shift) 
+  def encode(message, shift) 
     chars = message.split('')
     shifted_chars = []
 
@@ -20,7 +20,7 @@ class CaesarCipher
       if char_bounds
         actual_shift = minimize_shift(shift)
 
-        new_ord = calculate_new_code(char, actual_shift, char_bounds)
+        new_ord = calculate_new_char(char, actual_shift, char_bounds)
 
         shifted_chars << new_ord.chr
       else
@@ -43,7 +43,7 @@ class CaesarCipher
     @bounds.find { |bound| char.ord.between?(bound[:lower], bound[:upper]) }
   end
 
-  def calculate_new_code(char, shift, bounds)
+  def calculate_new_char(char, shift, bounds)
     new_ord = char.ord + shift
 
     # handle wrap around
