@@ -13,9 +13,9 @@ def caesar_cipher(message, shift)
     if bounds
       new_code = c.ord + actual_shift
 
-      #handle wrap around with mystery math
+      # handle wrap around with mystery math
       if new_code > bounds[:upper]
-        new_code = (new_code % bounds[:upper]) + bounds[:lower] - 1  
+        new_code = (new_code % bounds[:upper]) + bounds[:lower] - 1
       end
 
       shiftedChars << new_code.chr
